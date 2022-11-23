@@ -21,7 +21,7 @@ class TransactionsList extends StatelessWidget {
                   decoration: BoxDecoration(
                     shape: BoxShape.rectangle,
                     border: Border.all(
-                      color: Colors.redAccent,
+                      color: Colors.deepPurpleAccent,
                       style: BorderStyle.solid,
                       width: 2,
                     ),
@@ -38,7 +38,7 @@ class TransactionsList extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.normal,
-                          color: Colors.redAccent,
+                          color: Colors.deepPurpleAccent,
                         ),
                       ),
                       Text(
@@ -46,7 +46,7 @@ class TransactionsList extends StatelessWidget {
                         style: const TextStyle(
                           fontSize: 35,
                           fontWeight: FontWeight.bold,
-                          color: Colors.red,
+                          color: Colors.deepPurple,
                         ),
                       ),
                     ],

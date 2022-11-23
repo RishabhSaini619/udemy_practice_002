@@ -6,21 +6,28 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Expense Planner'),
+        title: Text('Expense Planner',textAlign: TextAlign.center,),
+        actions: [
+          IconButton(onPressed: (){},
+              icon: Icon(Icons.add_rounded),),
+
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Card(
-              color: Colors.blue,
+              color: Colors.deepPurple,
               elevation: 5,
               child: Container(
+                padding: EdgeInsets.all(5),
                 width: double.infinity,
                 child: const Text(
                   'Chart',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 30,
+                    color: Colors.white
                   ),
                 ),
               ),
