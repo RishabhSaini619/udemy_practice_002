@@ -11,71 +11,74 @@ TransactionsList(this.userTransactionsList);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: userTransactionsList.map((tx) {
-        return Card(
-          child: Row(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  shape: BoxShape.rectangle,
-                  border: Border.all(
-                    color: Colors.redAccent,
-                    style: BorderStyle.solid,
-                    width: 2,
+    return Container(
+      height: 300,
+      child: ListView(
+        children: userTransactionsList.map((tx) {
+          return Card(
+            child: Row(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    border: Border.all(
+                      color: Colors.redAccent,
+                      style: BorderStyle.solid,
+                      width: 2,
+                    ),
+                  ),
+                  padding: const EdgeInsets.all(5),
+                  margin: const EdgeInsets.symmetric(
+                    vertical: 10,
+                    horizontal: 10,
+                  ),
+                  child: Row(
+                    children: [
+                      const Text(
+                        "₹",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.redAccent,
+                        ),
+                      ),
+                      Text(
+                        tx.amount.toString(),
+                        style: const TextStyle(
+                          fontSize: 35,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.red,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                padding: const EdgeInsets.all(5),
-                margin: const EdgeInsets.symmetric(
-                  vertical: 10,
-                  horizontal: 10,
-                ),
-                child: Row(
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "₹",
-                      style: TextStyle(
+                    Text(
+                      tx.title,
+                      style: const TextStyle(
                         fontSize: 20,
-                        fontWeight: FontWeight.normal,
-                        color: Colors.redAccent,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
                       ),
                     ),
                     Text(
-                      tx.amount.toString(),
+                      DateFormat().format(tx.date),
                       style: const TextStyle(
-                        fontSize: 35,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.red,
+                        color: Colors.black87,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w400,
                       ),
                     ),
                   ],
                 ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    tx.title,
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
-                  Text(
-                    DateFormat().format(tx.date),
-                    style: const TextStyle(
-                      color: Colors.black87,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        );
-      }).toList(),
+              ],
+            ),
+          );
+        }).toList(),
+      ),
     );
   }
 }
