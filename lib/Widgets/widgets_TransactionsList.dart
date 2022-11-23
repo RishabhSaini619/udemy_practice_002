@@ -42,7 +42,7 @@ class TransactionsList extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        userTransactionsList[index].amount.toString(),
+                        userTransactionsList[index].amount.toStringAsFixed(2),
                         style: const TextStyle(
                           fontSize: 35,
                           fontWeight: FontWeight.bold,
