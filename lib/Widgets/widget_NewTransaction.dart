@@ -8,6 +8,7 @@ class NewTransaction extends StatelessWidget {
   final inputAmountController = TextEditingController();
   final inputDateController = TextEditingController();
 
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,6 +19,7 @@ class NewTransaction extends StatelessWidget {
             children: [
               TextField(
                 controller: inputIdController,
+                keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   labelText: 'id',
                   prefixIcon: Icon(
@@ -32,7 +34,7 @@ class NewTransaction extends StatelessWidget {
                 //   inputTitle = value;
                 // },
                 controller: inputTitleController,
-                decoration: InputDecoration(
+                keyboardType: TextInputType.name,                decoration: InputDecoration(
                   labelText: 'Title',
                   prefixIcon: Icon(
                     Icons.abc_rounded,
@@ -46,6 +48,7 @@ class NewTransaction extends StatelessWidget {
                 //   inputAmount = value;
                 // },
                 controller: inputAmountController,
+                keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                   labelText: 'Amount',
                   prefixIcon: Icon(
@@ -57,6 +60,7 @@ class NewTransaction extends StatelessWidget {
               ),
               TextField(
                 controller: inputDateController,
+                keyboardType: TextInputType.datetime,
                 decoration: InputDecoration(
                   labelText: 'Date',
                   prefixIcon: Icon(
@@ -73,9 +77,14 @@ class NewTransaction extends StatelessWidget {
                   print('Input Title: $inputTitleController');
                   print('Input Amount: $inputAmountController');
                   print('Input Date: $inputDateController');
+
+
+                  if ((inputTitleController.text).isEmpty || double.parse(inputAmountController.text) <= 0) {
+                    return;
+                  }
                   addNewTx(
                     inputTitleController.text,
-                    double.parse(inputAmountController.text),
+                    double.parse(inputAmountController.text,),
                   );
                 },
                 child: const Text('Add Transaction'),

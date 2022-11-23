@@ -5,16 +5,15 @@ import "package:intl/intl.dart";
 import 'package:udemy_practice_002/Model/model_Transaction.dart';
 
 class TransactionsList extends StatelessWidget {
-
-final List<Transaction>userTransactionsList;
-TransactionsList(this.userTransactionsList);
+  final List<Transaction> userTransactionsList;
+  TransactionsList(this.userTransactionsList);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 300,
-      child: ListView(
-        children: userTransactionsList.map((tx) {
+      child: ListView.builder(
+        itemBuilder: (context, index) {
           return Card(
             child: Row(
               children: [
@@ -43,7 +42,7 @@ TransactionsList(this.userTransactionsList);
                         ),
                       ),
                       Text(
-                        tx.amount.toString(),
+                        userTransactionsList[index].amount.toString(),
                         style: const TextStyle(
                           fontSize: 35,
                           fontWeight: FontWeight.bold,
@@ -57,7 +56,7 @@ TransactionsList(this.userTransactionsList);
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      tx.title,
+                      userTransactionsList[index].title,
                       style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -65,7 +64,7 @@ TransactionsList(this.userTransactionsList);
                       ),
                     ),
                     Text(
-                      DateFormat().format(tx.date),
+                      DateFormat().format(userTransactionsList[index].date),
                       style: const TextStyle(
                         color: Colors.black87,
                         fontSize: 15,
@@ -77,11 +76,9 @@ TransactionsList(this.userTransactionsList);
               ],
             ),
           );
-        }).toList(),
+        },
+        itemCount: userTransactionsList.length,
       ),
     );
   }
 }
-
-
-
