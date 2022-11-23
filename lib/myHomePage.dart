@@ -5,8 +5,15 @@ import 'package:udemy_practice_002/transaction.dart';
 import 'package:intl/intl.dart';
 
 class MyHomePage extends StatelessWidget {
-  String inputTitle;
-  String inputAmount;
+
+  // String inputTitle;
+  // String inputAmount;
+
+  final inputIdController = TextEditingController();
+  final inputTitleController = TextEditingController();
+  final inputAmountController = TextEditingController();
+  final inputDateController = TextEditingController();
+
   final List<Transaction> transactions = [
     Transaction(
       id: 't1',
@@ -49,7 +56,8 @@ class MyHomePage extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               child: Column(
                 children: [
-                  const TextField(
+                   TextField(
+                    controller: inputIdController,
                     decoration: InputDecoration(
                       labelText: 'id',
                       prefixIcon: Icon(
@@ -60,10 +68,11 @@ class MyHomePage extends StatelessWidget {
                     autofocus: true,
                   ),
                   TextField(
-                    onChanged: (value) {
-                      inputTitle = value;
-                    },
-                    decoration: const InputDecoration(
+                    // onChanged: (value) {
+                    //   inputTitle = value;
+                    // },
+                    controller: inputTitleController,
+                    decoration:  InputDecoration(
                       labelText: 'Title',
                       prefixIcon: Icon(
                         Icons.abc_rounded,
@@ -73,9 +82,10 @@ class MyHomePage extends StatelessWidget {
                     autofocus: true,
                   ),
                   TextField(
-                    onChanged: (value) {
-                      inputAmount = value;
-                    },
+                    // onChanged: (value) {
+                    //   inputAmount = value;
+                    // },
+                    controller: inputAmountController,
                     decoration: const InputDecoration(
                       labelText: 'Amount',
                       prefixIcon: Icon(
@@ -85,7 +95,8 @@ class MyHomePage extends StatelessWidget {
                     autocorrect: true,
                     autofocus: true,
                   ),
-                  const TextField(
+                   TextField(
+                    controller: inputDateController,
                     decoration: InputDecoration(
                       labelText: 'Date',
                       prefixIcon: Icon(
@@ -97,7 +108,12 @@ class MyHomePage extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      print('Input Title: $inputTitle \n Input Amount : ₹$inputAmount');
+                      // print('Input Title: $inputTitle \n Input Amount : ₹$inputAmount');
+                      print('Input id: $inputIdController');
+                      print('Input Title: $inputTitleController');
+                      print('Input Amount: $inputAmountController');
+                      print('Input Date: $inputDateController');
+
                     },
                     child: const Text('Add Transaction'),
                   ),
