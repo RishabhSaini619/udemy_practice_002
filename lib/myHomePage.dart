@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:udemy_practice_002/transaction.dart';
+import 'package:intl/intl.dart';
 
 class MyHomePage extends StatelessWidget {
   final List<Transaction> transactions = [
@@ -27,6 +28,7 @@ class MyHomePage extends StatelessWidget {
         children: [
           Card(
             color: Colors.blue,
+            elevation: 5,
             child: Container(
               width: double.infinity,
               child: const Text(
@@ -37,7 +39,6 @@ class MyHomePage extends StatelessWidget {
                 ),
               ),
             ),
-            elevation: 5,
             //
           ),
           Column(
@@ -93,7 +94,7 @@ class MyHomePage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          tx.date.toString(),
+                         DateFormat().format(tx.date),
                           style: const TextStyle(
                             color: Colors.black87,
                             fontSize: 15,
