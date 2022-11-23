@@ -1,54 +1,51 @@
-
 import 'package:flutter/material.dart';
+import 'package:udemy_practice_002/transaction.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+class MyHomePage extends StatelessWidget {
+  final List<Transaction> transacions = [
+    Transaction(
+      id: 't1',
+      title: 'New Shoes',
+      amount: 699.99,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 't2',
+      title: 'New Buds',
+      amount: 1699.99,
+      date: DateTime.now(),
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
-
-        title: Text(widget.title),
+        title: Text('Expense Planner'),
       ),
-      body: Center(
-
-        child: Column(
-
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+      body: Column(
+        children: [
+          Card(
+            color: Colors.blue,
+            child: Container(
+              width: double.infinity,
+              child: Text(
+                'Chart',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 30,
+                ),
+              ),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
+            elevation: 5,
+            //
+          ),
+          Card(
+            color: Colors.amberAccent,
+            child: Text('List of Transaction'),
+          ),
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
