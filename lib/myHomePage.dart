@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:udemy_practice_002/transaction.dart';
 
 class MyHomePage extends StatelessWidget {
-  final List<Transaction> transacions = [
+  final List<Transaction> transactions = [
     Transaction(
       id: 't1',
       title: 'New Shoes',
@@ -21,7 +21,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Expense Planner'),
+        title: const Text('Expense Planner'),
       ),
       body: Column(
         children: [
@@ -29,7 +29,7 @@ class MyHomePage extends StatelessWidget {
             color: Colors.blue,
             child: Container(
               width: double.infinity,
-              child: Text(
+              child: const Text(
                 'Chart',
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -40,9 +40,72 @@ class MyHomePage extends StatelessWidget {
             elevation: 5,
             //
           ),
-          Card(
-            color: Colors.amberAccent,
-            child: Text('List of Transaction'),
+          Column(
+            children: transactions.map((tx) {
+              return Card(
+                child: Row(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        border: Border.all(
+                          color: Colors.redAccent,
+                          style: BorderStyle.solid,
+                          width: 2,
+                        ),
+                      ),
+                      padding: const EdgeInsets.all(5),
+                      margin: const EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: 10,
+                      ),
+                      child: Row(
+                        children: [
+                          const Text(
+                            "₹",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.normal,
+                              color: Colors.redAccent,
+                            ),
+                          ),
+                          Text(
+                            tx.amount.toString(),
+                            style: const TextStyle(
+                              fontSize: 35,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.red,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          tx.title,
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black
+                          ),
+                        ),
+                        Text(
+                          tx.date.toString(),
+                          style: const TextStyle(
+                            color: Colors.black87,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              );
+            }).toList(),
           ),
         ],
       ),
