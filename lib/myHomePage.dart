@@ -1,8 +1,12 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:flutter/material.dart';
 import 'package:udemy_practice_002/transaction.dart';
 import 'package:intl/intl.dart';
 
 class MyHomePage extends StatelessWidget {
+  String inputTitle;
+  String inputAmount;
   final List<Transaction> transactions = [
     Transaction(
       id: 't1',
@@ -39,7 +43,67 @@ class MyHomePage extends StatelessWidget {
                 ),
               ),
             ),
-            //
+          ),
+          Card(
+            child: Container(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  const TextField(
+                    decoration: InputDecoration(
+                      labelText: 'id',
+                      prefixIcon: Icon(
+                        Icons.perm_identity,
+                      ),
+                    ),
+                    autocorrect: true,
+                    autofocus: true,
+                  ),
+                  TextField(
+                    onChanged: (value) {
+                      inputTitle = value;
+                    },
+                    decoration: const InputDecoration(
+                      labelText: 'Title',
+                      prefixIcon: Icon(
+                        Icons.abc_rounded,
+                      ),
+                    ),
+                    autocorrect: true,
+                    autofocus: true,
+                  ),
+                  TextField(
+                    onChanged: (value) {
+                      inputAmount = value;
+                    },
+                    decoration: const InputDecoration(
+                      labelText: 'Amount',
+                      prefixIcon: Icon(
+                        Icons.money,
+                      ),
+                    ),
+                    autocorrect: true,
+                    autofocus: true,
+                  ),
+                  const TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Date',
+                      prefixIcon: Icon(
+                        Icons.date_range,
+                      ),
+                    ),
+                    autocorrect: true,
+                    autofocus: true,
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      print('Input Title: $inputTitle \n Input Amount : ₹$inputAmount');
+                    },
+                    child: const Text('Add Transaction'),
+                  ),
+                ],
+              ),
+            ),
           ),
           Column(
             children: transactions.map((tx) {
@@ -82,7 +146,6 @@ class MyHomePage extends StatelessWidget {
                       ),
                     ),
                     Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
@@ -90,11 +153,11 @@ class MyHomePage extends StatelessWidget {
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
-                            color: Colors.black
+                            color: Colors.black,
                           ),
                         ),
                         Text(
-                         DateFormat().format(tx.date),
+                          DateFormat().format(tx.date),
                           style: const TextStyle(
                             color: Colors.black87,
                             fontSize: 15,
