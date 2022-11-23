@@ -1,11 +1,7 @@
-// ignore_for_file: depend_on_referenced_packages
-
 import 'package:flutter/material.dart';
-import 'package:udemy_practice_002/transaction.dart';
-import 'package:intl/intl.dart';
+import 'package:udemy_practice_002/Widgets/widgets_TransactionsList.dart';
 
 class MyHomePage extends StatelessWidget {
-
   // String inputTitle;
   // String inputAmount;
 
@@ -14,20 +10,6 @@ class MyHomePage extends StatelessWidget {
   final inputAmountController = TextEditingController();
   final inputDateController = TextEditingController();
 
-  final List<Transaction> transactions = [
-    Transaction(
-      id: 't1',
-      title: 'New Shoes',
-      amount: 699.99,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'New Buds',
-      amount: 1699.99,
-      date: DateTime.now(),
-    ),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +38,7 @@ class MyHomePage extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               child: Column(
                 children: [
-                   TextField(
+                  TextField(
                     controller: inputIdController,
                     decoration: InputDecoration(
                       labelText: 'id',
@@ -72,7 +54,7 @@ class MyHomePage extends StatelessWidget {
                     //   inputTitle = value;
                     // },
                     controller: inputTitleController,
-                    decoration:  InputDecoration(
+                    decoration: InputDecoration(
                       labelText: 'Title',
                       prefixIcon: Icon(
                         Icons.abc_rounded,
@@ -95,7 +77,7 @@ class MyHomePage extends StatelessWidget {
                     autocorrect: true,
                     autofocus: true,
                   ),
-                   TextField(
+                  TextField(
                     controller: inputDateController,
                     decoration: InputDecoration(
                       labelText: 'Date',
@@ -113,7 +95,6 @@ class MyHomePage extends StatelessWidget {
                       print('Input Title: $inputTitleController');
                       print('Input Amount: $inputAmountController');
                       print('Input Date: $inputDateController');
-
                     },
                     child: const Text('Add Transaction'),
                   ),
@@ -121,72 +102,7 @@ class MyHomePage extends StatelessWidget {
               ),
             ),
           ),
-          Column(
-            children: transactions.map((tx) {
-              return Card(
-                child: Row(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        border: Border.all(
-                          color: Colors.redAccent,
-                          style: BorderStyle.solid,
-                          width: 2,
-                        ),
-                      ),
-                      padding: const EdgeInsets.all(5),
-                      margin: const EdgeInsets.symmetric(
-                        vertical: 10,
-                        horizontal: 10,
-                      ),
-                      child: Row(
-                        children: [
-                          const Text(
-                            "₹",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.normal,
-                              color: Colors.redAccent,
-                            ),
-                          ),
-                          Text(
-                            tx.amount.toString(),
-                            style: const TextStyle(
-                              fontSize: 35,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.red,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          tx.title,
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
-                        ),
-                        Text(
-                          DateFormat().format(tx.date),
-                          style: const TextStyle(
-                            color: Colors.black87,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              );
-            }).toList(),
-          ),
+          TransactionsList(),
         ],
       ),
     );
