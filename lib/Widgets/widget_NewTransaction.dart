@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 
-class NewTransaction extends StatelessWidget {
+class NewTransaction extends StatefulWidget {
   final Function addNewTx;
   NewTransaction(this.addNewTx);
-  final inputIdController = TextEditingController();
-  final inputTitleController = TextEditingController();
-  final inputAmountController = TextEditingController();
-  final inputDateController = TextEditingController();
 
+  @override
+  State<NewTransaction> createState() => _NewTransactionState();
+}
+
+class _NewTransactionState extends State<NewTransaction> {
+  final inputIdController = TextEditingController();
+
+  final inputTitleController = TextEditingController();
+
+  final inputAmountController = TextEditingController();
+
+  final inputDateController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +42,8 @@ class NewTransaction extends StatelessWidget {
                 //   inputTitle = value;
                 // },
                 controller: inputTitleController,
-                keyboardType: TextInputType.name,                decoration: InputDecoration(
+                keyboardType: TextInputType.name,
+                decoration: InputDecoration(
                   labelText: 'Title',
                   prefixIcon: Icon(
                     Icons.abc_rounded,
@@ -70,7 +79,7 @@ class NewTransaction extends StatelessWidget {
                 autocorrect: true,
                 autofocus: true,
               ),
-              TextButton(
+              OutlinedButton(
                 onPressed: () {
                   // print('Input Title: $inputTitle \n Input Amount : ₹$inputAmount');
                   print('Input id: $inputIdController');
@@ -78,14 +87,17 @@ class NewTransaction extends StatelessWidget {
                   print('Input Amount: $inputAmountController');
                   print('Input Date: $inputDateController');
 
-
-                  if ((inputTitleController.text).isEmpty || double.parse(inputAmountController.text) <= 0) {
+                  if ((inputTitleController.text).isEmpty ||
+                      double.parse(inputAmountController.text) <= 0) {
                     return;
                   }
-                  addNewTx(
+                  widget.addNewTx(
                     inputTitleController.text,
-                    double.parse(inputAmountController.text,),
+                    double.parse(
+                      inputAmountController.text,
+                    ),
                   );
+                  Navigator.of(context).pop();
                 },
                 child: const Text('Add Transaction'),
               ),

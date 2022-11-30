@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'Udemy Practice 2',
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
+        accentColor: Colors.amberAccent
       ),
       home: MyHomePage(),
     );

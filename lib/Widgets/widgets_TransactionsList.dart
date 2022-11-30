@@ -21,7 +21,7 @@ class TransactionsList extends StatelessWidget {
                   decoration: BoxDecoration(
                     shape: BoxShape.rectangle,
                     border: Border.all(
-                      color: Colors.deepPurpleAccent,
+                      color: Theme.of(context).primaryColor,
                       style: BorderStyle.solid,
                       width: 2,
                     ),
@@ -33,20 +33,20 @@ class TransactionsList extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      const Text(
+                       Text(
                         "₹",
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.normal,
-                          color: Colors.deepPurpleAccent,
+                          color: Theme.of(context).primaryColorDark,
                         ),
                       ),
                       Text(
                         userTransactionsList[index].amount.toStringAsFixed(2),
-                        style: const TextStyle(
+                        style:  TextStyle(
                           fontSize: 35,
                           fontWeight: FontWeight.bold,
-                          color: Colors.deepPurple,
+                          color: Theme.of(context).primaryColorDark,
                         ),
                       ),
                     ],
@@ -57,16 +57,16 @@ class TransactionsList extends StatelessWidget {
                   children: [
                     Text(
                       userTransactionsList[index].title,
-                      style: const TextStyle(
+                      style:  TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                        color: Theme.of(context).primaryColorDark,
                       ),
                     ),
                     Text(
                       DateFormat().format(userTransactionsList[index].date),
-                      style: const TextStyle(
-                        color: Colors.black87,
+                      style:  TextStyle(
+                        color: Theme.of(context).primaryColorDark,
                         fontSize: 15,
                         fontWeight: FontWeight.w400,
                       ),
