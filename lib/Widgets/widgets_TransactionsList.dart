@@ -11,58 +11,77 @@ class TransactionsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
-      child: ListView.builder(
-        itemBuilder: (context, index) {
-          return Card(
-            child: Row(
+      height: 740,
+      child: userTransactionsList.isEmpty
+          ? Column(
               children: [
+                Text(
+                  'No transactions added yet!',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 25,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
                 Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.rectangle,
-                    border: Border.all(
-                      color: Theme.of(context).primaryColor,
-                      style: BorderStyle.solid,
-                      width: 2,
-                    ),
+                  height: 500,
+                  padding: const EdgeInsets.all(10),
+                  child: Image.asset(
+                    "assets/image/waiting.png",
+                    fit: BoxFit.fitHeight,
                   ),
-                  padding: const EdgeInsets.all(5),
-                  margin: const EdgeInsets.symmetric(
-                    vertical: 10,
-                    horizontal: 10,
-                  ),
+                ),
+              ],
+            )
+          : ListView.builder(
+              itemBuilder: (context, index) {
+                return Card(
                   child: Row(
                     children: [
-                       Text(
-                        "₹",
-                           style: Theme.of(context).textTheme.titleMedium
+                      Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          border: Border.all(
+                            color: Theme.of(context).primaryColor,
+                            style: BorderStyle.solid,
+                            width: 2,
+                          ),
+                        ),
+                        padding: const EdgeInsets.all(5),
+                        margin: const EdgeInsets.symmetric(
+                          vertical: 10,
+                          horizontal: 10,
+                        ),
+                        child: Row(
+                          children: [
+                            Text("₹",
+                                style: Theme.of(context).textTheme.titleMedium),
+                            Text(
+                                userTransactionsList[index]
+                                    .amount
+                                    .toStringAsFixed(2),
+                                style: Theme.of(context).textTheme.titleLarge),
+                          ],
+                        ),
                       ),
-                      Text(
-                        userTransactionsList[index].amount.toStringAsFixed(2),
-                        style: Theme.of(context).textTheme.titleLarge
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(userTransactionsList[index].title,
+                              style: Theme.of(context).textTheme.titleMedium),
+                          Text(
+                            DateFormat()
+                                .format(userTransactionsList[index].date),
+                            style: Theme.of(context).textTheme.titleSmall,
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      userTransactionsList[index].title,
-                        style: Theme.of(context).textTheme.titleMedium
-                    ),
-                    Text(
-                      DateFormat().format(userTransactionsList[index].date),
-                      style: Theme.of(context).textTheme.titleSmall,
-                    ),
-                  ],
-                ),
-              ],
+                );
+              },
+              itemCount: userTransactionsList.length,
             ),
-          );
-        },
-        itemCount: userTransactionsList.length,
-      ),
     );
   }
 }

@@ -10,18 +10,18 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> userTransactionsList = [
-    Transaction(
-      id: 't1',
-      title: 'New Shoes',
-      amount: 699.99,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'New Buds',
-      amount: 1699.99,
-      date: DateTime.now(),
-    ),
+    // Transaction(
+    //   id: 't1',
+    //   title: 'New Shoes',
+    //   amount: 699.99,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: 't2',
+    //   title: 'New Buds',
+    //   amount: 1699.99,
+    //   date: DateTime.now(),
+    // ),
   ];
 
   void addNewTransaction(String txTitle, double txAmount) {
@@ -50,7 +50,6 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       // backgroundColor: Theme.of(context).accentColorBrightness,
       appBar: AppBar(
-
         title: Text(
           'Expense Planner',
           style: Theme.of(context).appBarTheme.titleTextStyle,
