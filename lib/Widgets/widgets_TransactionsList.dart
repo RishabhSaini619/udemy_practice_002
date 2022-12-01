@@ -35,19 +35,11 @@ class TransactionsList extends StatelessWidget {
                     children: [
                        Text(
                         "₹",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.normal,
-                          color: Theme.of(context).primaryColorDark,
-                        ),
+                           style: Theme.of(context).textTheme.titleMedium
                       ),
                       Text(
                         userTransactionsList[index].amount.toStringAsFixed(2),
-                        style:  TextStyle(
-                          fontSize: 35,
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).primaryColorDark,
-                        ),
+                        style: Theme.of(context).textTheme.titleLarge
                       ),
                     ],
                   ),
@@ -57,19 +49,11 @@ class TransactionsList extends StatelessWidget {
                   children: [
                     Text(
                       userTransactionsList[index].title,
-                      style:  TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).primaryColorDark,
-                      ),
+                        style: Theme.of(context).textTheme.titleMedium
                     ),
                     Text(
                       DateFormat().format(userTransactionsList[index].date),
-                      style:  TextStyle(
-                        color: Theme.of(context).primaryColorDark,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w400,
-                      ),
+                      style: Theme.of(context).textTheme.titleSmall,
                     ),
                   ],
                 ),

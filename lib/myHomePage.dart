@@ -50,13 +50,12 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       // backgroundColor: Theme.of(context).accentColorBrightness,
       appBar: AppBar(
+
         title: Text(
           'Expense Planner',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Theme.of(context).accentColor,
-          ),
+          style: Theme.of(context).appBarTheme.titleTextStyle,
         ),
+        centerTitle: true,
         actions: [
           IconButton(
             onPressed: () => startAddNewTx(context),
@@ -74,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
               color: Theme.of(context).primaryColor,
               elevation: 5,
               child: Container(
-                padding: EdgeInsets.all(5),
+                padding: const EdgeInsets.all(5),
                 width: double.infinity,
                 child: Text(
                   'Chart',
