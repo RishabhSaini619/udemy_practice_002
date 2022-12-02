@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:udemy_practice_002/Model/model_Transaction.dart';
+import 'package:udemy_practice_002/Widgets/widget_Chart.dart';
 import 'package:udemy_practice_002/Widgets/widget_NewTransaction.dart';
-import 'package:udemy_practice_002/Widgets/widgets_TransactionsList.dart';
+import 'package:udemy_practice_002/Widgets/widget_TransactionsList.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -23,6 +24,16 @@ class _MyHomePageState extends State<MyHomePage> {
     //   date: DateTime.now(),
     // ),
   ];
+
+  List<Transaction> get recentTrx {
+    return userTransactionsList.where((tx) {
+      return tx.date.isAfter(
+        DateTime.now().subtract(
+          const Duration(days: 7),
+        ),
+      );
+    }).toList();
+  }
 
   void addNewTransaction(String txTitle, double txAmount) {
     final newTx = Transaction(
@@ -67,23 +78,11 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Card(
-              color: Theme.of(context).primaryColor,
-              elevation: 5,
-              child: Container(
-                padding: const EdgeInsets.all(5),
-                width: double.infinity,
-                child: Text(
-                  'Chart',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 30,
-                    color: Theme.of(context).accentColor,
-                  ),
-                ),
-              ),
-            ),
+
+            Chart(recentTrx),
+
             TransactionsList(userTransactionsList),
           ],
         ),
