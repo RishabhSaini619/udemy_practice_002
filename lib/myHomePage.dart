@@ -23,6 +23,54 @@ class _MyHomePageState extends State<MyHomePage> {
       amount: 1699.99,
       date: DateTime.now(),
     ),
+    Transaction(
+      id: 't3',
+      title: 'New Shoes',
+      amount: 699.99,
+      date: DateTime.now().subtract(Duration(days: 1)),
+    ),
+    Transaction(
+      id: 't4',
+      title: 'New Buds',
+      amount: 1699.99,
+      date: DateTime.now().subtract(Duration(days: 1)),
+    ),Transaction(
+      id: 't5',
+      title: 'New Shoes',
+      amount: 699.99,
+      date: DateTime.now().subtract(Duration(days: 2)),
+    ),
+    Transaction(
+      id: 't6',
+      title: 'New Buds',
+      amount: 1699.99,
+      date: DateTime.now().subtract(Duration(days: 2)),
+    ),
+    Transaction(
+      id: 't7',
+      title: 'New Shoes',
+      amount: 699.99,
+      date: DateTime.now().subtract(Duration(days: 2)),
+    ),
+    Transaction(
+      id: 't8',
+      title: 'New Buds',
+      amount: 1699.99,
+      date: DateTime.now().subtract(Duration(days: 3)),
+    ),
+    Transaction(
+      id: 't9',
+      title: 'New Shoes',
+      amount: 699.99,
+      date: DateTime.now().subtract(Duration(days: 4)),
+    ),
+    Transaction(
+      id: 't10',
+      title: 'New Buds',
+      amount: 1699.99,
+      date: DateTime.now().subtract(Duration(days: 5)),
+    ),
+
   ];
 
   List<Transaction> get recentTrx {
