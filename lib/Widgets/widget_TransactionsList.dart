@@ -80,14 +80,28 @@ class TransactionsList extends StatelessWidget {
                 //   ),
                 // );
                 return Card(
-                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(15),
+                      bottomRight: Radius.circular(15),
+                    ),
+                  ),
                   elevation: 10,
                   child: ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: Colors.amberAccent,
-                      radius: 45,
+                    leading: Container(
+                      height: 60,
+                      width: 60,
+                      decoration: BoxDecoration(
+                        color: Colors.amberAccent,
+                        shape: BoxShape.rectangle,
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(15),
+                          bottomRight: Radius.circular(15),
+                        ),
+                      ),
                       child: Padding(
-                        padding: const EdgeInsets.all(20),
+                        padding: const EdgeInsets.all(5),
                         child: FittedBox(
                           child: Text(
                             "₹ ${userTransactionsList[index].amount}",
