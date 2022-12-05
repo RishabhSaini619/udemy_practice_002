@@ -10,4 +10,4 @@ A few resources to get you started if this is your first Flutter project:
 
 https://github.com/RishabhSaini619/udemy_practice_002.git
 
-screenshot % apk included in assets
+screenshot & apk included in assets
