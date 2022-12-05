@@ -45,6 +45,7 @@ class MyApp extends StatelessWidget {
           buttonColor: Colors.deepPurple,
         ),
         textTheme: ThemeData.light().textTheme.copyWith(
+              //title
               titleLarge: const TextStyle(
                 fontFamily: 'Quicksand',
                 fontSize: 30,
@@ -68,8 +69,11 @@ class MyApp extends StatelessWidget {
                 // color: Theme.of(context).colorScheme.primary,
                 fontWeight: FontWeight.w200,
               ),
-            ), colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.deepPurple)
-            .copyWith(secondary: Colors.amberAccent).copyWith(secondary: Colors.amberAccent),
+
+            ),
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.deepPurple)
+            .copyWith(secondary: Colors.amberAccent)
+            .copyWith(secondary: Colors.amberAccent),
       ),
       home: const MyHomePage(),
     );
