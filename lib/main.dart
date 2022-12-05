@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Udemy Practice 2',
+      title: 'Expense Planner',
       theme: ThemeData(
         primaryColor: Colors.deepPurple,
         errorColor: Colors.red,

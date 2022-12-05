@@ -61,19 +61,7 @@ class _NewTransactionState extends State<NewTransaction> {
         padding: const EdgeInsets.all(10),
         child: Column(
           children: [
-            //id
-            // TextField(
-            //   controller: inputIdController,
-            //   keyboardType: TextInputType.number,
-            //   decoration: InputDecoration(
-            //     labelText: 'id',
-            //     prefixIcon: Icon(
-            //       Icons.perm_identity,
-            //     ),
-            //   ),
-            //   autocorrect: true,
-            //   autofocus: true,
-            // ),
+
             //Title
             TextField(
               // onChanged: (value) {

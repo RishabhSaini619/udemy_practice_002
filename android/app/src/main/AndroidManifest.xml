@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.flutter.udemy.udemy_practice_002">
    <application
-        android:label="udemy_practice_002"
+        android:label="Expense Planner"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
