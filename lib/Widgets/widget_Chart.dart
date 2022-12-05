@@ -1,12 +1,14 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:flutter/material.dart';
 import 'package:udemy_practice_002/Model/model_Transaction.dart';
-import "package:intl/intl.dart";
+import "package:intl/intl.dart" show DateFormat;
 import 'package:udemy_practice_002/Widgets/widget_ChartBar.dart';
 
 class Chart extends StatelessWidget {
   final List<Transaction> recentTransactions;
 
-  const Chart(this.recentTransactions);
+  const Chart(this.recentTransactions, {Key key}) : super(key: key);
 
   List<Map<String, Object>> get groupedTransactionValues {
     return List.generate(7, (index) {
@@ -42,9 +44,9 @@ class Chart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 6,
-      margin: EdgeInsets.all(20),
+      margin: const EdgeInsets.all(20),
       child: Padding(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: groupedTransactionValues.map((data) {

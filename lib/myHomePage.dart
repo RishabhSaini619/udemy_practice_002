@@ -5,73 +5,14 @@ import 'package:udemy_practice_002/Widgets/widget_NewTransaction.dart';
 import 'package:udemy_practice_002/Widgets/widget_TransactionsList.dart';
 
 class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key key}) : super(key: key);
+
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> userTransactionsList = [
-    Transaction(
-      id: 't1',
-      title: 'New Shoes',
-      amount: 699.99,
-      date: DateTime.now(),
-    ),
-    // Transaction(
-    //   id: 't2',
-    //   title: 'New Buds',
-    //   amount: 1699.99,
-    //   date: DateTime.now(),
-    // ),
-    // Transaction(
-    //   id: 't3',
-    //   title: 'New Shoes',
-    //   amount: 699.99,
-    //   date: DateTime.now().subtract(Duration(days: 1)),
-    // ),
-    // Transaction(
-    //   id: 't4',
-    //   title: 'New Buds',
-    //   amount: 1699.99,
-    //   date: DateTime.now().subtract(Duration(days: 1)),
-    // ),
-    // // Transaction(
-    // //   id: 't5',
-    // //   title: 'New Shoes',
-    // //   amount: 699.99,
-    // //   date: DateTime.now().subtract(Duration(days: 2)),
-    // // ),
-    // // Transaction(
-    // //   id: 't6',
-    // //   title: 'New Buds',
-    // //   amount: 1699.99,
-    // //   date: DateTime.now().subtract(Duration(days: 2)),
-    // // ),
-    // // Transaction(
-    // //   id: 't7',
-    // //   title: 'New Shoes',
-    // //   amount: 699.99,
-    // //   date: DateTime.now().subtract(Duration(days: 2)),
-    // // ),
-    // // Transaction(
-    // //   id: 't8',
-    // //   title: 'New Buds',
-    // //   amount: 1699.99,
-    // //   date: DateTime.now().subtract(Duration(days: 3)),
-    // // ),
-    // Transaction(
-    //   id: 't9',
-    //   title: 'New Shoes',
-    //   amount: 699.99,
-    //   date: DateTime.now().subtract(Duration(days: 4)),
-    // ),
-    // Transaction(
-    //   id: 't10',
-    //   title: 'New Buds',
-    //   amount: 1699.99,
-    //   date: DateTime.now().subtract(Duration(days: 5)),
-    // ),
-  ];
+  final List<Transaction> userTransactionsList = [];
 
   List<Transaction> get recentTrx {
     return userTransactionsList.where((tx) {
@@ -94,13 +35,13 @@ class _MyHomePageState extends State<MyHomePage> {
       userTransactionsList.add(newTx);
     });
   }
+
   void deleteSelectedTransaction(String id) {
     setState(() {
-      userTransactionsList.removeWhere(( trx) {
+      userTransactionsList.removeWhere((trx) {
         return trx.id == id;
       });
     });
-
   }
 
   void startAddNewTx(BuildContext ctx) {
@@ -127,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () => startAddNewTx(context),
             icon: Icon(
               Icons.add_rounded,
-              color: Colors.amberAccent,
+              color: Theme.of(context).colorScheme.secondary,
             ),
           ),
         ],
@@ -137,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Chart(recentTrx),
-            TransactionsList(userTransactionsList,deleteSelectedTransaction),
+            TransactionsList(userTransactionsList, deleteSelectedTransaction),
           ],
         ),
       ),

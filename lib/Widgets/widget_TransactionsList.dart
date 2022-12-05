@@ -1,4 +1,4 @@
-// ignore_for_file: depend_on_referenced_packages
+// ignore_for_file: depend_on_referenced_packages, must_be_immutable
 
 import 'package:flutter/material.dart';
 import "package:intl/intl.dart";
@@ -7,11 +7,13 @@ import 'package:udemy_practice_002/Model/model_Transaction.dart';
 class TransactionsList extends StatelessWidget {
   final List<Transaction> userTransactionsList;
   Function deleteSelectedTransaction;
-  TransactionsList(this.userTransactionsList, this.deleteSelectedTransaction);
+  TransactionsList(this.userTransactionsList, this.deleteSelectedTransaction,
+      {Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 740,
       child: userTransactionsList.isEmpty
           ? Column(
@@ -36,6 +38,58 @@ class TransactionsList extends StatelessWidget {
             )
           : ListView.builder(
               itemBuilder: (context, index) {
+                return Card(
+                  margin:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(15),
+                      bottomRight: Radius.circular(15),
+                    ),
+                  ),
+                  elevation: 10,
+                  child: ListTile(
+                    leading: Container(
+                      height: 50,
+                      width: 60,
+                      decoration: const BoxDecoration(
+                        color: Colors.amberAccent,
+                        shape: BoxShape.rectangle,
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(15),
+                          bottomRight: Radius.circular(15),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(5),
+                        child: FittedBox(
+                          child: Text(
+                            "₹ ${userTransactionsList[index].amount}",
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                        ),
+                      ),
+                    ),
+                    title: Text(
+                      " ${userTransactionsList[index].title}",
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    subtitle: Text(
+                      DateFormat().format(
+                        userTransactionsList[index].date,
+                      ),
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                    trailing: IconButton(
+                      onPressed: () => deleteSelectedTransaction(
+                          userTransactionsList[index].id),
+                      icon: Icon(
+                        Icons.delete_forever_rounded,
+                        color: Theme.of(context).errorColor,
+                      ),
+                    ),
+                  ),
+                );
                 // return Card(
                 //   child: Row(
                 //     children: [
@@ -80,58 +134,7 @@ class TransactionsList extends StatelessWidget {
                 //     ],
                 //   ),
                 // );
-                return Card(
-                  margin:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(15),
-                      bottomRight: Radius.circular(15),
-                    ),
-                  ),
-                  elevation: 10,
-                  child: ListTile(
-                    leading: Container(
-                      height: 50,
-                      width: 60,
-                      decoration: BoxDecoration(
-                        color: Colors.amberAccent,
-                        shape: BoxShape.rectangle,
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(15),
-                          bottomRight: Radius.circular(15),
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(5),
-                        child: FittedBox(
-                          child: Text(
-                            "₹ ${userTransactionsList[index].amount}",
-                            style: Theme.of(context).textTheme.titleLarge,
-                          ),
-                        ),
-                      ),
-                    ),
-                    title: Text(
-                      " ${userTransactionsList[index].title}",
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    subtitle: Text(
-                      DateFormat().format(
-                        userTransactionsList[index].date,
-                      ),
-                      style: Theme.of(context).textTheme.titleSmall,
-                    ),
-                    trailing: IconButton(
-                      onPressed: () => deleteSelectedTransaction(
-                          userTransactionsList[index].id),
-                      icon: Icon(
-                        Icons.delete_forever_rounded,
-                        color: Theme.of(context).errorColor,
-                      ),
-                    ),
-                  ),
-                );
+                // other method
               },
               itemCount: userTransactionsList.length,
             ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:udemy_practice_002/myHomePage.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -12,10 +12,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Udemy Practice 2',
       theme: ThemeData(
         primaryColor: Colors.deepPurple,
-        accentColor: Colors.amberAccent,
         errorColor: Colors.red,
         // colorScheme: const ColorScheme(
         //   primary: Colors.deepPurple,
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        buttonTheme: ButtonThemeData(
+        buttonTheme: const ButtonThemeData(
           textTheme: ButtonTextTheme.accent,
           buttonColor: Colors.deepPurple,
         ),
@@ -68,11 +68,10 @@ class MyApp extends StatelessWidget {
                 // color: Theme.of(context).colorScheme.primary,
                 fontWeight: FontWeight.w200,
               ),
-            ),
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.deepPurple)
-            .copyWith(secondary: Colors.amberAccent),
+            ), colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.deepPurple)
+            .copyWith(secondary: Colors.amberAccent).copyWith(secondary: Colors.amberAccent),
       ),
-      home: MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }
