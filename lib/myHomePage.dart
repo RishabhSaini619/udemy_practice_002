@@ -17,60 +17,60 @@ class _MyHomePageState extends State<MyHomePage> {
       amount: 699.99,
       date: DateTime.now(),
     ),
-    Transaction(
-      id: 't2',
-      title: 'New Buds',
-      amount: 1699.99,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't3',
-      title: 'New Shoes',
-      amount: 699.99,
-      date: DateTime.now().subtract(Duration(days: 1)),
-    ),
-    Transaction(
-      id: 't4',
-      title: 'New Buds',
-      amount: 1699.99,
-      date: DateTime.now().subtract(Duration(days: 1)),
-    ),Transaction(
-      id: 't5',
-      title: 'New Shoes',
-      amount: 699.99,
-      date: DateTime.now().subtract(Duration(days: 2)),
-    ),
-    Transaction(
-      id: 't6',
-      title: 'New Buds',
-      amount: 1699.99,
-      date: DateTime.now().subtract(Duration(days: 2)),
-    ),
-    Transaction(
-      id: 't7',
-      title: 'New Shoes',
-      amount: 699.99,
-      date: DateTime.now().subtract(Duration(days: 2)),
-    ),
-    Transaction(
-      id: 't8',
-      title: 'New Buds',
-      amount: 1699.99,
-      date: DateTime.now().subtract(Duration(days: 3)),
-    ),
-    Transaction(
-      id: 't9',
-      title: 'New Shoes',
-      amount: 699.99,
-      date: DateTime.now().subtract(Duration(days: 4)),
-    ),
-    Transaction(
-      id: 't10',
-      title: 'New Buds',
-      amount: 1699.99,
-      date: DateTime.now().subtract(Duration(days: 5)),
-    ),
-
+    // Transaction(
+    //   id: 't2',
+    //   title: 'New Buds',
+    //   amount: 1699.99,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: 't3',
+    //   title: 'New Shoes',
+    //   amount: 699.99,
+    //   date: DateTime.now().subtract(Duration(days: 1)),
+    // ),
+    // Transaction(
+    //   id: 't4',
+    //   title: 'New Buds',
+    //   amount: 1699.99,
+    //   date: DateTime.now().subtract(Duration(days: 1)),
+    // ),
+    // // Transaction(
+    // //   id: 't5',
+    // //   title: 'New Shoes',
+    // //   amount: 699.99,
+    // //   date: DateTime.now().subtract(Duration(days: 2)),
+    // // ),
+    // // Transaction(
+    // //   id: 't6',
+    // //   title: 'New Buds',
+    // //   amount: 1699.99,
+    // //   date: DateTime.now().subtract(Duration(days: 2)),
+    // // ),
+    // // Transaction(
+    // //   id: 't7',
+    // //   title: 'New Shoes',
+    // //   amount: 699.99,
+    // //   date: DateTime.now().subtract(Duration(days: 2)),
+    // // ),
+    // // Transaction(
+    // //   id: 't8',
+    // //   title: 'New Buds',
+    // //   amount: 1699.99,
+    // //   date: DateTime.now().subtract(Duration(days: 3)),
+    // // ),
+    // Transaction(
+    //   id: 't9',
+    //   title: 'New Shoes',
+    //   amount: 699.99,
+    //   date: DateTime.now().subtract(Duration(days: 4)),
+    // ),
+    // Transaction(
+    //   id: 't10',
+    //   title: 'New Buds',
+    //   amount: 1699.99,
+    //   date: DateTime.now().subtract(Duration(days: 5)),
+    // ),
   ];
 
   List<Transaction> get recentTrx {
@@ -83,16 +83,19 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  void addNewTransaction(String txTitle, double txAmount) {
+  void addNewTransaction(String txTitle, double txAmount, DateTime chosenDate) {
     final newTx = Transaction(
       id: DateTime.now().toString(),
       title: txTitle,
       amount: txAmount,
-      date: DateTime.now(),
+      date: chosenDate,
     );
     setState(() {
       userTransactionsList.add(newTx);
     });
+  }
+  void deleteSelectedTransaction() {
+
   }
 
   void startAddNewTx(BuildContext ctx) {
@@ -119,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () => startAddNewTx(context),
             icon: Icon(
               Icons.add_rounded,
-              color: Theme.of(context).accentColor,
+              color: Colors.amberAccent,
             ),
           ),
         ],
@@ -128,9 +131,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-
             Chart(recentTrx),
-
             TransactionsList(userTransactionsList),
           ],
         ),

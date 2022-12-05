@@ -15,8 +15,8 @@ class MyApp extends StatelessWidget {
       title: 'Udemy Practice 2',
       theme: ThemeData(
         primaryColor: Colors.deepPurple,
-        primarySwatch: Colors.deepPurple,
         accentColor: Colors.amberAccent,
+        errorColor: Colors.red,
         // colorScheme: const ColorScheme(
         //   primary: Colors.deepPurple,
         //   onPrimary: Colors.amberAccent,
@@ -39,6 +39,10 @@ class MyApp extends StatelessWidget {
             // color: Theme.of(context).colorScheme.secondary,
             fontWeight: FontWeight.bold,
           ),
+        ),
+        buttonTheme: ButtonThemeData(
+          textTheme: ButtonTextTheme.accent,
+          buttonColor: Colors.deepPurple,
         ),
         textTheme: ThemeData.light().textTheme.copyWith(
               titleLarge: const TextStyle(
@@ -65,6 +69,8 @@ class MyApp extends StatelessWidget {
                 fontWeight: FontWeight.w200,
               ),
             ),
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.deepPurple)
+            .copyWith(secondary: Colors.amberAccent),
       ),
       home: MyHomePage(),
     );

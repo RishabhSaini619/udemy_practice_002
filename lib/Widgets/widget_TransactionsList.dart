@@ -80,7 +80,8 @@ class TransactionsList extends StatelessWidget {
                 //   ),
                 // );
                 return Card(
-                  margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  margin:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
                       topRight: Radius.circular(15),
@@ -90,7 +91,7 @@ class TransactionsList extends StatelessWidget {
                   elevation: 10,
                   child: ListTile(
                     leading: Container(
-                      height: 60,
+                      height: 50,
                       width: 60,
                       decoration: BoxDecoration(
                         color: Colors.amberAccent,
@@ -120,7 +121,12 @@ class TransactionsList extends StatelessWidget {
                       ),
                       style: Theme.of(context).textTheme.titleSmall,
                     ),
-                    // trailing: ,
+                    trailing: IconButton(
+                      icon: Icon(
+                        Icons.delete_forever_rounded,
+                        color: Theme.of(context).errorColor,
+                      ),
+                    ),
                   ),
                 );
               },
