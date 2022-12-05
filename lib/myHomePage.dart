@@ -94,7 +94,12 @@ class _MyHomePageState extends State<MyHomePage> {
       userTransactionsList.add(newTx);
     });
   }
-  void deleteSelectedTransaction() {
+  void deleteSelectedTransaction(String id) {
+    setState(() {
+      userTransactionsList.removeWhere(( trx) {
+        return trx.id == id;
+      });
+    });
 
   }
 
@@ -132,7 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Chart(recentTrx),
-            TransactionsList(userTransactionsList),
+            TransactionsList(userTransactionsList,deleteSelectedTransaction),
           ],
         ),
       ),

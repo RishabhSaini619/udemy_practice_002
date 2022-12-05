@@ -6,7 +6,8 @@ import 'package:udemy_practice_002/Model/model_Transaction.dart';
 
 class TransactionsList extends StatelessWidget {
   final List<Transaction> userTransactionsList;
-  TransactionsList(this.userTransactionsList);
+  Function deleteSelectedTransaction;
+  TransactionsList(this.userTransactionsList, this.deleteSelectedTransaction);
 
   @override
   Widget build(BuildContext context) {
@@ -122,6 +123,8 @@ class TransactionsList extends StatelessWidget {
                       style: Theme.of(context).textTheme.titleSmall,
                     ),
                     trailing: IconButton(
+                      onPressed: () => deleteSelectedTransaction(
+                          userTransactionsList[index].id),
                       icon: Icon(
                         Icons.delete_forever_rounded,
                         color: Theme.of(context).errorColor,
