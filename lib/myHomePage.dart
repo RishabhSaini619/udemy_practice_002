@@ -24,6 +24,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
+  bool showChart = false;
   void addNewTransaction(String txTitle, double txAmount, DateTime chosenDate) {
     final newTx = Transaction(
       id: DateTime.now().toString(),
@@ -78,17 +79,37 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
-                height: (MediaQuery.of(context).size.height -
-                        appBarRow.preferredSize.height) *
-                    0.2,
-                child: Chart(recentTrx)),
-            Container(
-                height: (MediaQuery.of(context).size.height -
-                        appBarRow.preferredSize.height) *
-                    0.7,
-                child: TransactionsList(
-                    userTransactionsList, deleteSelectedTransaction)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Show Chart',
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                Switch(
+                  activeColor: Theme.of(context).colorScheme.secondary,
+                  value: showChart,
+                  onChanged: (value) {
+                    setState(() {
+                      showChart = value;
+                    });
+                  },
+                ),
+              ],
+            ),
+            showChart
+                ? Container(
+                    height: (MediaQuery.of(context).size.height -
+                            appBarRow.preferredSize.height) *
+                        0.7,
+                    child: Chart(recentTrx),
+                  )
+                : Container(
+                    height: (MediaQuery.of(context).size.height -
+                            appBarRow.preferredSize.height) *
+                        0.7,
+                    child: TransactionsList(
+                        userTransactionsList, deleteSelectedTransaction)),
           ],
         ),
       ),
