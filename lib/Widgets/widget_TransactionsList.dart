@@ -13,6 +13,8 @@ class TransactionsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+    final appTheme = Theme.of(context);
     return userTransactionsList.isEmpty
         ? LayoutBuilder(builder: (Context, constraints) {
             return Column(
@@ -22,11 +24,11 @@ class TransactionsList extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 25,
-                    color: Theme.of(context).primaryColor,
+                    color: appTheme.primaryColor,
                   ),
                 ),
                 Container(
-                  height: constraints.maxHeight*0.85,
+                  height: constraints.maxHeight * 0.85,
                   padding: const EdgeInsets.only(
                     top: 10,
                   ),
@@ -67,29 +69,43 @@ class TransactionsList extends StatelessWidget {
                       child: FittedBox(
                         child: Text(
                           "₹ ${userTransactionsList[index].amount}",
-                          style: Theme.of(context).textTheme.titleLarge,
+                          style: appTheme.textTheme.titleLarge,
                         ),
                       ),
                     ),
                   ),
                   title: Text(
                     " ${userTransactionsList[index].title}",
-                    style: Theme.of(context).textTheme.titleMedium,
+                    style: appTheme.textTheme.titleMedium,
                   ),
                   subtitle: Text(
                     DateFormat().format(
                       userTransactionsList[index].date,
                     ),
-                    style: Theme.of(context).textTheme.titleSmall,
+                    style: appTheme.textTheme.titleSmall,
                   ),
-                  trailing: IconButton(
+                  trailing: mediaQuery.size.width > 460
+                      ? TextButton.icon(
+
                     onPressed: () => deleteSelectedTransaction(
                         userTransactionsList[index].id),
-                    icon: Icon(
-                      Icons.delete_forever_rounded,
-                      color: Theme.of(context).errorColor,
-                    ),
-                  ),
+                          icon: Icon(
+                            Icons.delete_forever_rounded,
+                            color: appTheme.errorColor,
+                          ),
+                          label: Text(
+                            'Delete',
+                            style: appTheme.textTheme.titleSmall,
+                          ),
+                        )
+                      : IconButton(
+                          onPressed: () => deleteSelectedTransaction(
+                              userTransactionsList[index].id),
+                          icon: Icon(
+                            Icons.delete_forever_rounded,
+                            color: appTheme.errorColor,
+                          ),
+                        ),
                 ),
               );
               // return Card(
@@ -99,7 +115,7 @@ class TransactionsList extends StatelessWidget {
               //         decoration: BoxDecoration(
               //           shape: BoxShape.rectangle,
               //           border: Border.all(
-              //             color: Theme.of(context).primaryColor,
+              //             color: appTheme.primaryColor,
               //             style: BorderStyle.solid,
               //             width: 2,
               //           ),
@@ -112,12 +128,12 @@ class TransactionsList extends StatelessWidget {
               //         child: Row(
               //           children: [
               //             Text("₹",
-              //                 style: Theme.of(context).textTheme.titleMedium),
+              //                 style: appTheme.textTheme.titleMedium),
               //             Text(
               //                 userTransactionsList[index]
               //                     .amount
               //                     .toStringAsFixed(2),
-              //                 style: Theme.of(context).textTheme.titleLarge),
+              //                 style: appTheme.textTheme.titleLarge),
               //           ],
               //         ),
               //       ),
@@ -125,11 +141,11 @@ class TransactionsList extends StatelessWidget {
               //         crossAxisAlignment: CrossAxisAlignment.start,
               //         children: [
               //           Text(userTransactionsList[index].title,
-              //               style: Theme.of(context).textTheme.titleMedium),
+              //               style: appTheme.textTheme.titleMedium),
               //           Text(
               //             DateFormat()
               //                 .format(userTransactionsList[index].date),
-              //             style: Theme.of(context).textTheme.titleSmall,
+              //             style: appTheme.textTheme.titleSmall,
               //           ),
               //         ],
               //       ),

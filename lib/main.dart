@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
             fontFamily: 'OpenSans',
             fontSize: 30,
             color: Colors.amberAccent,
-            // color: Theme.of(context).colorScheme.secondary,
+            // color: appTheme.colorScheme.secondary,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
                 fontFamily: 'Quicksand',
                 fontSize: 30,
                 color: Colors.deepPurple,
-                // color: Theme.of(context).colorScheme.primary,
+                // color: appTheme.colorScheme.primary,
                 fontWeight: FontWeight.bold,
               ),
               titleMedium: const TextStyle(
@@ -64,7 +64,7 @@ class MyApp extends StatelessWidget {
                 fontSize: 25,
                 color: Colors.deepPurple,
 
-                // color: Theme.of(context).colorScheme.primary,
+                // color: appTheme.colorScheme.primary,
                 fontWeight: FontWeight.w500,
               ),
               titleSmall: const TextStyle(
@@ -72,7 +72,7 @@ class MyApp extends StatelessWidget {
                 fontSize: 20,
                 color: Colors.deepPurple,
 
-                // color: Theme.of(context).colorScheme.primary,
+                // color: appTheme.colorScheme.primary,
                 fontWeight: FontWeight.w200,
               ),
             ),

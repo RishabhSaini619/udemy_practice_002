@@ -12,6 +12,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
   final List<Transaction> userTransactionsList = [];
 
   List<Transaction> get recentTrx {
@@ -56,12 +57,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+    final appTheme = Theme.of(context);
     final isLandscape =
-        MediaQuery.of(context).orientation == Orientation.landscape;
+        mediaQuery.orientation == Orientation.landscape;
     final appBarRow = AppBar(
       title: Text(
         'Expense Planner',
-        style: Theme.of(context).appBarTheme.titleTextStyle,
+        style: appTheme.appBarTheme.titleTextStyle,
       ),
       centerTitle: true,
       actions: [
@@ -69,15 +72,15 @@ class _MyHomePageState extends State<MyHomePage> {
           onPressed: () => startAddNewTx(context),
           icon: Icon(
             Icons.add_rounded,
-            color: Theme.of(context).colorScheme.secondary,
+            color: appTheme.colorScheme.secondary,
           ),
         ),
       ],
     );
     final trxList = Container(
-        height: (MediaQuery.of(context).size.height -
+        height: (mediaQuery.size.height -
                 appBarRow.preferredSize.height) *
-            0.7,
+            0.8,
         child:
             TransactionsList(userTransactionsList, deleteSelectedTransaction));
     return Scaffold(
@@ -92,10 +95,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   Text(
                     'Show Chart',
-                    style: Theme.of(context).textTheme.titleMedium,
+                    style: appTheme.textTheme.titleMedium,
                   ),
                   Switch(
-                    activeColor: Theme.of(context).colorScheme.secondary,
+                    activeColor: appTheme.colorScheme.secondary,
                     value: showChart,
                     onChanged: (value) {
                       setState(() {
@@ -108,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
             if (isLandscape)
               showChart
                   ? Container(
-                      height: (MediaQuery.of(context).size.height -
+                      height: (mediaQuery.size.height -
                               appBarRow.preferredSize.height) *
                           0.7,
                       child: Chart(recentTrx),
@@ -116,9 +119,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   : trxList,
             if (!isLandscape)
               Container(
-                height: (MediaQuery.of(context).size.height -
+                height: (mediaQuery.size.height -
                     appBarRow.preferredSize.height) *
-                    0.3,
+                    0.2,
                 child: Chart(recentTrx),
               ),
             if (!isLandscape) trxList,

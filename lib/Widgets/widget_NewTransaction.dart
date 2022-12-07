@@ -55,40 +55,8 @@ class _NewTransactionState extends State<NewTransaction> {
 
   @override
   Widget build(BuildContext context) {
-    // return BottomSheet(
-    //   shape: RoundedRectangleBorder(
-    //       borderRadius: BorderRadius.vertical(top: Radius.circular(25.0),),),
-    //   // backgroundColor: Colors.black,
-    //   onClosing: submitData,
-    //   builder: (BuildContext context) {
-    //     return Padding(
-    //       padding:
-    //           EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom + 10 ),
-    //       child: Column(
-    //         crossAxisAlignment: CrossAxisAlignment.start,
-    //         mainAxisSize: MainAxisSize.min,
-    //         children: <Widget>[
-    //           TextField(
-    //             decoration: InputDecoration(
-    //                 border: InputBorder.none, hintText: 'Enter a search term'),
-    //           ),
-    //           TextField(
-    //             decoration: InputDecoration(
-    //                 border: InputBorder.none, hintText: 'Enter a search term'),
-    //           ),
-    //           TextField(
-    //             decoration: InputDecoration(
-    //                 border: InputBorder.none, hintText: 'Enter a search term'),
-    //           ),
-    //           TextField(
-    //             decoration: InputDecoration(
-    //                 border: InputBorder.none, hintText: 'Enter a search term'),
-    //           )
-    //         ],
-    //       ),
-    //     );
-    //   },
-    // );
+    final mediaQuery = MediaQuery.of(context);
+    final appTheme = Theme.of(context);
     return SingleChildScrollView(
       child: Card(
         shape: RoundedRectangleBorder(
@@ -96,7 +64,7 @@ class _NewTransactionState extends State<NewTransaction> {
         ),
         child: Container(
           padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).viewInsets.bottom + 10),
+              bottom: mediaQuery.viewInsets.bottom + 10),
           child: Column(
             children: [
               //Title
@@ -137,19 +105,19 @@ class _NewTransactionState extends State<NewTransaction> {
                 children: [
                   Text(
                     "Date",
-                    style: Theme.of(context).textTheme.titleMedium,
+                    style: appTheme.textTheme.titleMedium,
                   ),
                   Text(
                     selectedDate == null
                         ? 'No Date Chosen'
                         : DateFormat.yMd().format(selectedDate),
-                    style: Theme.of(context).textTheme.titleSmall,
+                    style: appTheme.textTheme.titleSmall,
                   ),
                   IconButton(
                     onPressed: trxDatePicker,
                     icon: Icon(
                       Icons.date_range,
-                      color: Theme.of(context).primaryColor,
+                      color: appTheme.primaryColor,
                     ),
                   ),
                 ],
@@ -165,5 +133,39 @@ class _NewTransactionState extends State<NewTransaction> {
         ),
       ),
     );
+    // return BottomSheet(
+    //   shape: RoundedRectangleBorder(
+    //       borderRadius: BorderRadius.vertical(top: Radius.circular(25.0),),),
+    //   // backgroundColor: Colors.black,
+    //   onClosing: submitData,
+    //   builder: (BuildContext context) {
+    //     return Padding(
+    //       padding:
+    //           EdgeInsets.only(bottom: mediaQuery.viewInsets.bottom + 10 ),
+    //       child: Column(
+    //         crossAxisAlignment: CrossAxisAlignment.start,
+    //         mainAxisSize: MainAxisSize.min,
+    //         children: <Widget>[
+    //           TextField(
+    //             decoration: InputDecoration(
+    //                 border: InputBorder.none, hintText: 'Enter a search term'),
+    //           ),
+    //           TextField(
+    //             decoration: InputDecoration(
+    //                 border: InputBorder.none, hintText: 'Enter a search term'),
+    //           ),
+    //           TextField(
+    //             decoration: InputDecoration(
+    //                 border: InputBorder.none, hintText: 'Enter a search term'),
+    //           ),
+    //           TextField(
+    //             decoration: InputDecoration(
+    //                 border: InputBorder.none, hintText: 'Enter a search term'),
+    //           )
+    //         ],
+    //       ),
+    //     );
+    //   },
+    // );
   }
 }
