@@ -97,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     'Show Chart',
                     style: appTheme.textTheme.titleMedium,
                   ),
-                  Switch(
+                  Switch.adaptive(
                     activeColor: appTheme.colorScheme.secondary,
                     value: showChart,
                     onChanged: (value) {
