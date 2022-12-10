@@ -23,14 +23,14 @@ class _TransactionsListItemState extends State<TransactionsListItem> {
   Color bgColors ;
   @override
   void initState() {
-    const avaiableColors = [
+    const availableColors = [
       Colors.deepOrange,
       Colors.amberAccent,
       Colors.grey,
       Colors.black,
       Colors.blueAccent,
     ];
-    bgColors = avaiableColors[Random().nextInt(5)];
+    bgColors = availableColors[Random().nextInt(5)];
     super.initState();
   }
   @override
@@ -51,6 +51,7 @@ class _TransactionsListItemState extends State<TransactionsListItem> {
           height: 50,
           width: 60,
           decoration:  BoxDecoration(
+            //color: Colors.amberAccent,
             color: bgColors,
             shape: BoxShape.rectangle,
             borderRadius: const BorderRadius.only(

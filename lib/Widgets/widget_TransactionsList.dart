@@ -39,14 +39,26 @@ class TransactionsList extends StatelessWidget {
               ],
             );
           })
-        : ListView.builder(
-            itemBuilder: (context, index) {
-              return TransactionsListItem(
-                userTransactionsListItem: userTransactionsList[index],
-                deleteSelectedTransaction: deleteSelectedTransaction,
-              );
-            },
-            itemCount: userTransactionsList.length,
+        : ListView(
+            children: userTransactionsList
+                .map((trx) => TransactionsListItem(
+                      key: ValueKey(trx.id),
+                      // if we didn't  use UniqueKey
+                      // as color change every time we access the list
+                      // but now its fixed only change with its "transaction ID"
+                      userTransactionsListItem: trx,
+                      deleteSelectedTransaction: deleteSelectedTransaction,
+                    ))
+                .toList(),
           );
+    // ListView.builder(
+    //         itemBuilder: (context, index) {
+    //           return TransactionsListItem(
+    //             userTransactionsListItem: userTransactionsList[index],
+    //             deleteSelectedTransaction: deleteSelectedTransaction,
+    //           );
+    //         },
+    //         itemCount: userTransactionsList.length,
+    //       );
   }
 }
