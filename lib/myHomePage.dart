@@ -12,7 +12,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   final List<Transaction> userTransactionsList = [];
 
   List<Transaction> get recentTrx {
@@ -55,12 +54,61 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  List<Widget> buildLandscapeContent(
+    MediaQueryData mediaQuery,
+    AppBar appBarRow,
+    Widget trxListWidget,
+  ) {
+    return [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'Show Chart',
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          Switch.adaptive(
+            activeColor: Theme.of(context).colorScheme.secondary,
+            value: showChart,
+            onChanged: (value) {
+              setState(() {
+                showChart = value;
+              });
+            },
+          ),
+        ],
+      ),
+      showChart
+          ? SizedBox(
+              height:
+                  (mediaQuery.size.height - appBarRow.preferredSize.height) *
+                      0.7,
+              child: Chart(recentTrx),
+            )
+          : trxListWidget,
+    ];
+  }
+
+  List<Widget> buildPortraitContent(
+    MediaQueryData mediaQuery,
+    AppBar appBarRow,
+    Widget trxListWidget,
+  ) {
+    return [
+      SizedBox(
+        height: (mediaQuery.size.height - appBarRow.preferredSize.height) * 0.2,
+        child: Chart(recentTrx),
+      ),
+      trxListWidget,
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     final appTheme = Theme.of(context);
-    final isLandscape =
-        mediaQuery.orientation == Orientation.landscape;
+    final isPortrait = mediaQuery.orientation == Orientation.portrait;
+    final isLandscape = mediaQuery.orientation == Orientation.landscape;
     final appBarRow = AppBar(
       title: Text(
         'Expense Planner',
@@ -78,53 +126,30 @@ class _MyHomePageState extends State<MyHomePage> {
       ],
     );
     final trxList = SizedBox(
-        height: (mediaQuery.size.height -
-                appBarRow.preferredSize.height) *
-            0.8,
-        child:
-            TransactionsList(userTransactionsList, deleteSelectedTransaction));
+      height: (mediaQuery.size.height - appBarRow.preferredSize.height) * 0.8,
+      child: TransactionsList(
+        userTransactionsList,
+        deleteSelectedTransaction,
+      ),
+    );
     return Scaffold(
       appBar: appBarRow,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            if (isLandscape)
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Show Chart',
-                    style: appTheme.textTheme.titleMedium,
-                  ),
-                  Switch.adaptive(
-                    activeColor: appTheme.colorScheme.secondary,
-                    value: showChart,
-                    onChanged: (value) {
-                      setState(() {
-                        showChart = value;
-                      });
-                    },
-                  ),
-                ],
+            if (isPortrait)
+              ...buildPortraitContent(
+                mediaQuery,
+                appBarRow,
+                trxList,
               ),
             if (isLandscape)
-              showChart
-                  ? SizedBox(
-                      height: (mediaQuery.size.height -
-                              appBarRow.preferredSize.height) *
-                          0.7,
-                      child: Chart(recentTrx),
-                    )
-                  : trxList,
-            if (!isLandscape)
-              SizedBox(
-                height: (mediaQuery.size.height -
-                    appBarRow.preferredSize.height) *
-                    0.2,
-                child: Chart(recentTrx),
+              ...buildLandscapeContent(
+                mediaQuery,
+                appBarRow,
+                trxList,
               ),
-            if (!isLandscape) trxList,
           ],
         ),
       ),
