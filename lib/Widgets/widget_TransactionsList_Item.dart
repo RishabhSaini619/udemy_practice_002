@@ -1,9 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import "package:intl/intl.dart";
 import 'package:udemy_practice_002/Model/model_Transaction.dart';
 
 
-class TransactionsListItem extends StatelessWidget {
+class TransactionsListItem extends StatefulWidget {
   const TransactionsListItem({
     Key key,
     @required this.userTransactionsListItem,
@@ -13,6 +15,24 @@ class TransactionsListItem extends StatelessWidget {
   final Transaction userTransactionsListItem;
   final Function deleteSelectedTransaction;
 
+  @override
+  State<TransactionsListItem> createState() => _TransactionsListItemState();
+}
+
+class _TransactionsListItemState extends State<TransactionsListItem> {
+  Color bgColors ;
+  @override
+  void initState() {
+    const avaiableColors = [
+      Colors.deepOrange,
+      Colors.amberAccent,
+      Colors.grey,
+      Colors.black,
+      Colors.blueAccent,
+    ];
+    bgColors = avaiableColors[Random().nextInt(5)];
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
@@ -30,10 +50,10 @@ class TransactionsListItem extends StatelessWidget {
         leading: Container(
           height: 50,
           width: 60,
-          decoration: const BoxDecoration(
-            color: Colors.amberAccent,
+          decoration:  BoxDecoration(
+            color: bgColors,
             shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               topRight: Radius.circular(15),
               bottomRight: Radius.circular(15),
             ),
@@ -42,26 +62,26 @@ class TransactionsListItem extends StatelessWidget {
             padding: const EdgeInsets.all(5),
             child: FittedBox(
               child: Text(
-                "₹ ${userTransactionsListItem.amount}",
+                "₹ ${widget.userTransactionsListItem.amount}",
                 style: appTheme.textTheme.titleLarge,
               ),
             ),
           ),
         ),
         title: Text(
-          " ${userTransactionsListItem.title}",
+          " ${widget.userTransactionsListItem.title}",
           style: appTheme.textTheme.titleMedium,
         ),
         subtitle: Text(
           DateFormat().format(
-            userTransactionsListItem.date,
+            widget.userTransactionsListItem.date,
           ),
           style: appTheme.textTheme.titleSmall,
         ),
         trailing: mediaQuery.size.width > 460
             ? TextButton.icon(
                 onPressed: () =>
-                    deleteSelectedTransaction(userTransactionsListItem.id),
+                    widget.deleteSelectedTransaction(widget.userTransactionsListItem.id),
                 icon: Icon(
                   Icons.delete_forever_rounded,
                   color: appTheme.errorColor,
@@ -73,7 +93,7 @@ class TransactionsListItem extends StatelessWidget {
               )
             : IconButton(
                 onPressed: () =>
-                    deleteSelectedTransaction(userTransactionsListItem.id),
+                    widget.deleteSelectedTransaction(widget.userTransactionsListItem.id),
                 icon: Icon(
                   Icons.delete_forever_rounded,
                   color: appTheme.errorColor,
