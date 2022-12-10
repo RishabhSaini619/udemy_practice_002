@@ -11,12 +11,11 @@ class ChartBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context);
     final appTheme = Theme.of(context);
     return LayoutBuilder(builder: (context, constraints) {
       return Column(
         children: [
-          Container(
+          SizedBox(
             height: constraints.maxHeight * 0.15,
             child: FittedBox(
               child: Text(
@@ -28,7 +27,7 @@ class ChartBar extends StatelessWidget {
           Container(
             height: constraints.maxHeight * 0.05,
           ),
-          Container(
+          SizedBox(
             height: constraints.maxHeight * 0.6,
             width: 10,
             child: Stack(
@@ -58,7 +57,7 @@ class ChartBar extends StatelessWidget {
           Container(
             height: constraints.maxHeight * 0.05,
           ),
-          Container(
+          SizedBox(
             height: constraints.maxHeight * 0.15,
 
             child: Text(label),

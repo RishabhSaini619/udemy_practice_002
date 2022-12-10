@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:udemy_practice_002/myHomePage.dart';
+import './myHomePage.dart';
 
 void main() {
   // WidgetsFlutterBinding.ensureInitialized();
@@ -23,6 +22,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.deepPurple,
         errorColor: Colors.red,
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: Colors.deepPurple,
+        )
+            .copyWith(
+              secondary: Colors.amberAccent,
+            )
+            .copyWith(
+              secondary: Colors.amberAccent,
+            ),
         // colorScheme: const ColorScheme(
         //   primary: Colors.deepPurple,
         //   onPrimary: Colors.amberAccent,
@@ -76,9 +84,6 @@ class MyApp extends StatelessWidget {
                 fontWeight: FontWeight.w200,
               ),
             ),
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.deepPurple)
-            .copyWith(secondary: Colors.amberAccent)
-            .copyWith(secondary: Colors.amberAccent),
       ),
       home: const MyHomePage(),
     );

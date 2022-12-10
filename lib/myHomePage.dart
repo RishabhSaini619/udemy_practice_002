@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:udemy_practice_002/Model/model_Transaction.dart';
-import 'package:udemy_practice_002/Widgets/widget_Chart.dart';
-import 'package:udemy_practice_002/Widgets/widget_NewTransaction.dart';
-import 'package:udemy_practice_002/Widgets/widget_TransactionsList.dart';
+import './Model/model_Transaction.dart';
+import './Widgets/widget_Chart.dart';
+import './Widgets/widget_NewTransaction.dart';
+import './Widgets/widget_TransactionsList.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key key}) : super(key: key);
@@ -77,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ],
     );
-    final trxList = Container(
+    final trxList = SizedBox(
         height: (mediaQuery.size.height -
                 appBarRow.preferredSize.height) *
             0.8,
@@ -110,7 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             if (isLandscape)
               showChart
-                  ? Container(
+                  ? SizedBox(
                       height: (mediaQuery.size.height -
                               appBarRow.preferredSize.height) *
                           0.7,
@@ -118,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     )
                   : trxList,
             if (!isLandscape)
-              Container(
+              SizedBox(
                 height: (mediaQuery.size.height -
                     appBarRow.preferredSize.height) *
                     0.2,
